@@ -1,0 +1,72 @@
+#index {
+  width: 650px;
+  margin-left: 235px;
+  cursor: pointer;
+  #everyday {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    margin-top: 20px;
+    box-sizing: border-box;
+    background-color: #ebf1ed;
+    padding: 10px 15px;
+    position: relative;
+    box-shadow: 1px 1px 10px #595c5f;
+    .title {
+      font-size: 12px;
+      padding: 10px 0 15px 0;
+    }
+    p {
+      padding-bottom: 20px;
+      font-size: 14px;
+    }
+    .author {
+      position: absolute;
+      top: 80px;
+      right: 15px;
+    }
+  }
+  #article {
+    border-radius: 10px;
+    background-color: #ebf1ed;
+    margin: 20px auto;
+    .main {
+      padding: 20px 15px;
+      h2 {
+        font-size: 18px;
+        padding-bottom: 20px;
+        color: #657576;
+        &:hover{
+            color: #acacac;
+        }
+      }
+      .content {
+        color: #757070;
+        word-break: break-all;
+        font-size: 14px;
+        line-height: 25px;
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        &:hover{
+            color: #a8a6a6;
+        }
+      }
+    }
+    .msg{
+        border-radius: 0 0 10px 10px;
+        background-color: #c4c3c3;
+        color: #3f4e43;
+        padding: 10px 15px;
+        span{
+            margin-right: 10px;
+        }
+    }
+  }
+  .el-pager li{
+      &.active{
+          background-color: #afbdb4;
+      }
+  }
+}

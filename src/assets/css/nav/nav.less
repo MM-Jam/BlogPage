@@ -1,0 +1,48 @@
+#nav {
+  width: 100%;
+  padding: 0 235px;
+  display: flex;
+  align-items: center;
+  background-color: #ebf1ed;
+  .left {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 15px;
+    display: flex;
+    width: 340px;
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    h3 {
+      color: #595c5f;
+      font-size: 20px;
+      display: inline-block;
+      margin-right: 10px;
+    }
+    ul {
+      display: flex;
+      li {
+        padding: 0 10px;
+        a {
+          color: #595c5f;
+          &:hover {
+            color: #a3b6a9;
+          }
+        }
+      }
+    }
+  }
+  .right {
+    width: 350px;
+    display: flex;
+    position: absolute;
+    right: 235px;
+    .el-input {
+      margin-right: 10px;
+      input {
+        padding-left: 10px;
+        border-radius: 10px;
+      }
+    }
+  }
+}
