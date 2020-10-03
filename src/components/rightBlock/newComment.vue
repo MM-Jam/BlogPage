@@ -2,26 +2,16 @@
     <div id="new">
         <dl>
             <dt>最新评论</dt>
-            <dd>
-                <span class="name">我</span>
-                <span class="date">[2天前]</span>
-                <div class="content">好的，谢谢</div>
-            </dd>
-            <dd>
-                <span class="name">我</span>
-                <span class="date">[2天前]</span>
-                <div class="content">好的，谢谢</div>
-            </dd>
-            <dd>
-                <span class="name">我</span>
-                <span class="date">[2天前]</span>
-                <div class="content">好的，谢谢</div>
+            <dd v-for="comment in commentList" :key="comment.id">
+                <span class="name">{{comment.username}}</span>
+                <span class="date">[{{comment.ctime}}]</span>
+                <div class="content">{{comment.content}}</div>
             </dd>
         </dl>
     </div>
 </template>
 <script>
 export default {
-    
+    props:['commentList']
 }
 </script>
