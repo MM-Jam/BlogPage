@@ -80,11 +80,11 @@ module.exports = {
         }
       },
       {
-        test: /\.less$/,
-        // include: [
-        //   '/src/',
-        //   '/node_modules/'
-        // ],
+        test: /\.(less|css)$/,
+        include: [
+          '/src/',
+          '/node_modules/'
+        ],
         use: [
           {
             loader: "style-loader"
@@ -102,14 +102,24 @@ module.exports = {
           }
         ]
       },
-      {
-        test: /\.css$/,
-        loader: ['style-loader','css-loader']
-      },
+      // {
+      //   test: /\.css$/,
+      //   loader: ['style-loader','css-loader']
+      // },
       // {
       //   test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
       //   loader: 'file-loader'
       // },
+      // {
+      //   test: /\.less$/,
+      //       use: [{
+      //           loader: "style-loader" // creates style nodes from JS strings
+      //       }, {
+      //           loader: "css-loader" // translates CSS into CommonJS
+      //       }, {
+      //           loader: "less-loader" // compiles Less to CSS
+      //       }]
+      // }
     ]
   },
   node: {

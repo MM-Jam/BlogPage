@@ -9,15 +9,25 @@
       :article="article"
     />
     <!-- 分页组件 -->
-    <el-pagination background="" layout="prev, pager, next" :total="10">
-    </el-pagination>
+    <div class="block">
+      <el-pagination
+        layout="prev, pager, next"
+        background="false"
+        :total="50"
+        :current-page.sync="currentPage"
+        @current-change="changePage"
+        @next-click="goNextPage"
+        @prev-click="goPrevPage"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 <script>
 import everyDay from "@/components/index/everyday";
 import articlePage from "@/components/index/article.vue";
-import Axios from 'axios';
-import $ from 'jquery'
+import Axios from "axios";
+import $ from "jquery";
 
 export default {
   components: {
@@ -26,6 +36,7 @@ export default {
   },
   data() {
     return {
+      currentPage: 1,
       articleList: [
         // {
         //   title: "Laravel5.4安装passport时遇到的一些问题",
@@ -39,7 +50,7 @@ export default {
         //   tags:['laravel','111','aaa']
         // }
       ],
-      page:1,
+      page: 1,
       // resList:[],
     };
   },
@@ -48,29 +59,49 @@ export default {
   //     this.resList.forEach(item=>{
   //       for(let key of item){
   //           if(key==='content'){
-  //             item[key] = 
+  //             item[key] =
   //           }
   //       }
   //     })
   //   }
   // },
-  methods:{
-    queryBlogByPage(limit,page){
-    //我要在这里做分页查询，一次查5条
-    Axios.get('/queryBlogByPage',{
-      params:{
-        limit,
-        page
+  methods: {
+    queryBlogByPage(limit, page) {
+      //我要在这里做分页查询，一次查5条
+      Axios.get("/queryBlogByPage", {
+        params: {
+          limit,
+          page,
+        },
+      }).then((res) => {
+        // console.log(res);
+        this.articleList = res.data.data;
+        this.articleList.forEach(item=>{
+          item.link = item.id
+        })
+      });
+    },
+    changePage(page) {
+      this.currentPage = page;
+      console.log(this.currentPage);
+      this.queryBlogByPage(5, this.currentPage);
+    },
+    goNextPage(page) {
+      // console.log(page + 1);
+      this.currentPage = page + 1;
+      this.queryBlogByPage(5, this.currentPage);
+    },
+    goPrevPage(page) {
+      if (page == 1) {
+        return;
       }
-    }).then(res=>{
-      // console.log(res);
-      this.articleList = res.data.data;
-    })
-    }
+      this.currentPage = page - 1;
+      this.queryBlogByPage(5, this.currentPage);
+    },
   },
-  created(){
-    this.queryBlogByPage(5,this.page)
-  }
+  created() {
+    this.queryBlogByPage(5, this.page);
+  },
 };
 </script>
 <style lang="less">

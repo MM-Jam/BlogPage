@@ -1,21 +1,72 @@
 <template>
-    <div id="article">
-        <h1>php正则匹配中文汉字-正则表达式匹配中文</h1>
-        <p>
-            <span>作者：Jam</span>
-            <span>分类：PHP</span>
-            <span>发布于：2020-7-13</span>
-            <span>浏览：1233</span>
-            <span>没有评论</span>
-        </p>
-        <p>
-            最近学习正则，在百度搜php常用正则，80%都是采集的。其中开头都介绍了个匹配中文的方法，试了一下，不能用（汗！！！）。
-这个方法也是搜集来的，可以正确匹配中文：
-        </p>
+  <div id="article">
+    <div class="blog">
+      <h1>{{ blogDetails.title }}</h1>
+      <p>
+        <span>作者：Jam</span>
+        <span>分类：{{ blogDetails.tags }}</span>
+        <span>发布于：{{ blogDetails.ctime }}</span>
+        <span>浏览：{{ blogDetails.views }}</span>
+      </p>
+      <p class="content" v-html="blogDetails.content">
+        <!-- {{  }} -->
+      </p>
     </div>
+    <comment-edit />
+  </div>
 </template>
 <script>
+import commentEdit from "../components/comment/comment.vue";
+import Axios from "axios";
 export default {
-    
-}
+  components: {
+    commentEdit,
+  },
+  data() {
+    return {
+      blogDetails: {},
+    };
+  },
+  methods: {
+    addBlogViews() {
+      Axios.post("/addBlogViews", {
+        data: {
+          newViews: this.blogDetails.views + 1,
+          id: this.blogDetails.id,
+        },
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+  },
+  created() {
+    const id = this.$route.params.id;
+    console.log(id);
+    //发送axios请求
+    Axios.get("/queryBlogById", {
+      params: {
+        id,
+      },
+    })
+      .then((res) => {
+        console.log(res);
+        if (res.data.status == "success") {
+          console.log(res.data.data[0]);
+          this.blogDetails = res.data.data[0];
+          //这时候我要增加blog的views+1
+          this.addBlogViews();
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+};
 </script>
+<style lang="less">
+@import url(~@/assets/css/article.less);
+</style>

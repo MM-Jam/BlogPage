@@ -1,6 +1,6 @@
 <template>
   <div id="article">
-    <div class="main">
+    <div class="main" @click="linkToDetail">
       <h2>{{article.title}}</h2>
       <p class="content" v-html="article.content">
         <!-- {{article.content}} -->
@@ -19,6 +19,16 @@
 </template>
 <script>
 export default {
-  props:['article']
+  props:['article'],
+  computed:{
+    link(){
+      return this.article.link;
+    }
+  },
+  methods:{
+    linkToDetail(){
+      this.$router.push({ path: `article/${this.link}` })
+    }
+  }
 };
 </script>
