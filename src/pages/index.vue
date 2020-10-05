@@ -57,7 +57,7 @@ export default {
   methods:{
     queryBlogByPage(limit,page){
     //我要在这里做分页查询，一次查5条
-    Axios.get('/queryBlog',{
+    Axios.get('/queryBlogByPage',{
       params:{
         limit,
         page
