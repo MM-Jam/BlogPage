@@ -9,6 +9,7 @@
 import randomTag from '@/components/rightBlock/randomTag.vue'
 import recentHot from '@/components/rightBlock/recentHot.vue'
 import newComment from '@/components/rightBlock/newComment.vue'
+import Axios from 'axios'
 export default {
     components:{
         randomTag,
@@ -17,25 +18,33 @@ export default {
     },
     data(){
         return {
-            tags:['html','css','js','jq','bootartap','vvgrwds','xuasbcdn','gycduHSD'],
-            hotList:[
-                '使用码云git的webhook实现生产环境代使用码云git的webhook实现生产环境代使用码云git的webhook实现生产环境代',
-                '使用码云git的webhook实现生产环境代',
-                '使用码云git的webhook实现生产环境代'
-            ],
-            commentList:[
-                {
-                    username:'我',
-                    ctime:'2天前',
-                    content:'好的，谢谢'
-                },
-                {
-                    username:'我',
-                    ctime:'2天前',
-                    content:'好的，谢谢'
-                }
-            ]
+            tags:[],
+            hotList:[],
+            commentList:[]
         }
+    },
+    created(){
+        Axios.get('/queryAllTags').then(res=>{
+            // console.log(res)
+            res.data.data.forEach(obj => {
+                // console.log(obj.tag)
+                this.tags.push(...obj.tag.split(','))
+            });
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        Axios.get('/queryBlogByViews').then(res=>{
+            this.hotList = res.data.data
+        }).catch(err=>{
+            console.log(err)
+        })
+
+        Axios.get('/queryCommentByTime').then(res=>{
+            this.commentList = res.data.data
+        }).catch(err=>{
+            console.log(err)
+        })
     }
 }
 </script>

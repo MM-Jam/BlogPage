@@ -5,9 +5,10 @@ import App from './App'
 import ElementUI from 'element-ui';
 // import 'element-theme-chalk';
 import 'element-ui/lib/theme-chalk/index.css';
+import '@/assets/css/reset.css';
+
 import router from './router'
 import less from 'less';
-import '@/assets/css/reset.css';
 
 
 Vue.config.productionTip = false

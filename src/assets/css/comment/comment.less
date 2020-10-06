@@ -6,7 +6,7 @@
     background-color: #ebf1ed;
     box-shadow: 1px 1px 10px #acacac;
     padding-left: 15px;
-    p{
+    p.title{
         margin-top: 20px;
         font-size: large;
         padding-bottom: 15px;
@@ -24,9 +24,18 @@
         width: 604px;
         margin-top: 15px;
     }
-    .verification{
-        width: 200px;
+    .yanzheng{
+        display: flex;
         margin-top: 15px;
+        align-items: center;
+        .verification{
+            width: 200px;
+        }
+        .captcha{
+            svg{
+                height: 40px;
+            }
+        }
     }
     .btns{
         margin-top: 15px;

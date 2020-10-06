@@ -12,7 +12,7 @@
     <div class="block">
       <el-pagination
         layout="prev, pager, next"
-        background="false"
+        :background="false"
         :total="50"
         :current-page.sync="currentPage"
         @current-change="changePage"
@@ -88,14 +88,14 @@ export default {
     },
     goNextPage(page) {
       // console.log(page + 1);
-      this.currentPage = page + 1;
+      this.currentPage = page;
       this.queryBlogByPage(5, this.currentPage);
     },
     goPrevPage(page) {
       if (page == 1) {
         return;
       }
-      this.currentPage = page - 1;
+      this.currentPage = page;
       this.queryBlogByPage(5, this.currentPage);
     },
   },

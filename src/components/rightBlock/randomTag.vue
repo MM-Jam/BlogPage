@@ -2,7 +2,7 @@
     <div id="tags">
         <dl>
             <dt>随机标签云</dt>
-            <dd v-for="(tag,index) in _tags" :key="tag-index">
+            <dd v-for="(tag) in _tags" :key="tag">
                 {{tag}}
             </dd>
         </dl>

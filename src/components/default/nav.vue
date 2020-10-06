@@ -11,19 +11,17 @@
         <li><router-link to="/leaveWord">留言</router-link></li>
       </ul>
     </div>
-    <div class="right">
-      <el-input v-model="input" placeholder="请输入关键词查找"></el-input>
-      <el-button round>搜索</el-button>
-    </div>
   </div>
 </template>
 <script>
+import Axios from 'axios';
 export default {
   data() {
     return {
       input: "",
+      articleByKey:[],
     };
-  },
+  }
 };
 </script>
 <style lang="less">
